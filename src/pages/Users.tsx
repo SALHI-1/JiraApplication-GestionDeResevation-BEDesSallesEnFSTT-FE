@@ -11,7 +11,7 @@ interface User {
 }
 
 const Users = () => {
-    const { user: currentUser } = useContext(AuthContext)!;
+    const { user: currentUser, setUser } = useContext(AuthContext)!;
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const [msg, setMsg] = useState('');
@@ -47,6 +47,10 @@ const Users = () => {
                 const { data } = await API.put(`/users/${editingId}`, { nom, email, role });
                 setUsers(users.map(u => u._id === editingId ? { ...u, ...data } : u));
                 setMsg('Utilisateur mis à jour avec succès');
+                //si l'utilisateur connecté est celui qui est modifié
+                if (currentUser && currentUser._id === editingId) {
+                    setUser({ ...currentUser, ...data });
+                }
                 setEditingId(null);
             } else {
                 // Create

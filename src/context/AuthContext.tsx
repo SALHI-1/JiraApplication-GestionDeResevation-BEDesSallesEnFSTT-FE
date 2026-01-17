@@ -14,6 +14,7 @@ interface AuthContextType {
     login: (email: string, mot_de_passe: string) => Promise<void>;
     register: (nom: string, email: string, mot_de_passe: string, role?: string) => Promise<void>;
     logout: () => void;
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
     loading: boolean;
 }
 
@@ -21,7 +22,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
-    
+
     // MODIFICATION : Initialisé à 'true' pour bloquer les redirections au démarrage
     const [loading, setLoading] = useState(true);
 
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 if (storedUser) {
                     const parsedUser = JSON.parse(storedUser);
                     setUser(parsedUser);
-                    
+
                     // Optionnel : Configurer le header Authorization d'API ici si nécessaire
                     // API.defaults.headers.common['Authorization'] = `Bearer ${parsedUser.token}`;
                 }
@@ -83,7 +84,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+        <AuthContext.Provider value={{ user, setUser, login, register, logout, loading }}>
             {/* On ne rend les enfants que lorsque le chargement initial est terminé */}
             {!loading ? children : (
                 <div className="flex justify-center items-center h-screen">

@@ -40,12 +40,12 @@ const Dashboard = () => {
                 <Link to="/reservations" className="block group">
                     <div className="card h-full transition-all duration-200 hover:shadow-md hover:border-primary-300 group-hover:-translate-y-1">
                         <div className="flex items-center justify-between mb-4">
-                            <h5 className="text-xl font-bold text-secondary-900 group-hover:text-primary-700 transition-colors">Mes Réservations</h5>
+                            <h5 className="text-xl font-bold text-secondary-900 group-hover:text-primary-700 transition-colors">Les Réservations</h5>
                             <svg className="w-6 h-6 text-primary-500 group-hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                         </div>
-                        <p className="text-secondary-600">Gérez vos réservations de salles, créez-en de nouvelles et consultez votre historique.</p>
+                        <p className="text-secondary-600">réservations de salles</p>
                     </div>
                 </Link>
 
